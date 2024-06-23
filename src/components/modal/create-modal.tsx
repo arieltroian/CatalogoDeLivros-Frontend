@@ -31,7 +31,7 @@ export function CreateModal({ closeModal }: ModalProps) {
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
 
-  const { mutate, isSuccess } = useBookDataMutate();
+  const { mutate, isSuccess, isLoading } = useBookDataMutate();
 
   const submit = () => {
     const bookData: BookData = {
@@ -59,7 +59,7 @@ export function CreateModal({ closeModal }: ModalProps) {
           <Input label="image" value={image} updateValue={setImage} />
         </form>
         <button onClick={submit} className="btn-secondary">
-          Enviar
+          {isLoading ? "Enviando..." : "Enviar"}
         </button>
       </div>
     </div>
