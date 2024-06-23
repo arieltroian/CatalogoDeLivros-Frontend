@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding-bottom: 2rem;
+}
+
+.card img {
+  border-radius: 8px;
+  width: 15rem;
+  height: auto;
+}
+
+.card-title {
+  margin: 0 15px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.author {
+  text-align: left;
+  margin: 0 15px;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+span {
+  font-size: 15px;
+}
+
+.price {
+  font-size: 20px;
+  margin: 0 15px;
+}
