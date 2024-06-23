@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useBookDataMutate } from "../../hooks/useBookDataMutate";
 import { BookData } from "../../interface/BookData";
 import "./modal.css";
@@ -7,6 +7,10 @@ interface InputProps {
   label: string;
   value: string | number;
   updateValue(value: any): void;
+}
+
+interface ModalProps {
+  closeModal(): void;
 }
 
 const Input = ({ label, value, updateValue }: InputProps) => {
@@ -21,13 +25,13 @@ const Input = ({ label, value, updateValue }: InputProps) => {
   );
 };
 
-export function CreateModal() {
+export function CreateModal({ closeModal }: ModalProps) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
 
-  const { mutate } = useBookDataMutate();
+  const { mutate, isSuccess } = useBookDataMutate();
 
   const submit = () => {
     const bookData: BookData = {
@@ -38,6 +42,12 @@ export function CreateModal() {
     };
     mutate(bookData);
   };
+
+  useEffect(() => {
+    if (!isSuccess) return;
+    closeModal();
+  }, [isSuccess]);
+
   return (
     <div className="modal-overlay">
       <div className="modal-body">
