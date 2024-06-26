@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./App.css";
+import { useState } from "react";
 import { Card } from "./components/card/card";
 import { useBookData } from "./hooks/useBookData";
 import { CreateModal } from "./components/modal/create-modal";
@@ -18,15 +18,19 @@ function App() {
       <div className="card-grid">
         {data?.map((bookData) => (
           <Card
+            key={bookData.id}
             title={bookData.title}
             author={bookData.author}
             price={bookData.price}
             image={bookData.image}
+            book={bookData}
           />
         ))}
       </div>
       {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
-      <button onClick={handleOpenModal}>novo</button>
+      <button className="create-modal" onClick={handleOpenModal}>
+        Novo
+      </button>
     </div>
   );
 }
